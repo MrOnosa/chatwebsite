@@ -1,0 +1,33 @@
+<HTML>
+  <head>
+    <title>Chat Website</title>
+    <style>
+      * { margin: 0; padding: 0; box-sizing: border-box; }
+      body { color: #DFDFDF; background: #447889; font: 14px Helvetica, Arial; }
+      form { background: #1A5265; padding: 3px; position: fixed; bottom: 0; width: 100%; }
+      #usernameInput { border: 0; padding: 10px; width: 9%; margin-right: .5%; }
+      #chatInput { border: 0; padding: 10px; width: 80%; margin-right: .5%; }
+      form button { width: 9%; background: #D6E8EE; border: none; padding: 10px; }
+      #messages { list-style-type: none; margin-top: 0; margin-left: 0; margin-right: 0; margin-bottom: 42px; padding: 0; }
+      #messages li { padding: 5px 10px; }
+      #messages li:nth-child(odd) { background: #1A5265; }
+      #messages li.messageFromUser { background: #003B14; }
+      #messages li.messageFromServer { font-style: italic; }
+    </style>
+  </head>
+  <BODY>
+    <ul id="messages">
+  	  <li>Select a Username then type a message below</li>
+  	</ul>
+    <form action="">
+      <input id="usernameInput" autocomplete="off" placeholder="Username" />
+      <input id="chatInput" autocomplete="off" placeholder="Type messages here..." />
+      <button>Send</button>
+    </form>
+
+    <script src="/socket.io/socket.io.js"></script>
+  	<script src="http://code.jquery.com/jquery-1.11.1.js"></script>
+
+    <script src="/chat.js"></script>
+  </BODY>
+</HTML>

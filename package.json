@@ -1,0 +1,19 @@
+{
+  "name": "chatwebsite",
+  "version": "1.0.0",
+  "description": "A chat website",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Tyler Palesano",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.13.4",
+    "socket.io": "^1.4.5",
+    "socket.io-client": "^1.4.5"
+  },
+  "engines": {
+    "node": "4.2.6"
+  }
+}
