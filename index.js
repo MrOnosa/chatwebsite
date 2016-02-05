@@ -8,14 +8,25 @@ app.set('port', (process.env.PORT || 3000));
 app.use(express.static(__dirname + '/public'));
 
 app.get('/', function(request, response) {
-  response.sendFile(__dirname + '/public/index.html');
+  response.sendFile(__dirname + '/public/chat.html');
 })
 
-// usernames which are currently connected to the chat
+app.get('/101', function(request, response) {
+  response.sendFile(__dirname + '/public/101.html');
+})
+
+//Create "101" namespace
+var io_101 = io.of('/101');
+io_101.on('connection', function(socket){
+  console.log("holy guacamole this worked i'm so smart eeeeeee ");
+});
+
+//Create "chat" namespace
+var io_chat = io.of('/chat');
+// usernames which are currently connected to the "chat"
 var usernames = {};
 var numUsers = 0;
-
-io.on('connection', function(socket){
+io_chat.on('connection', function(socket){
   console.log('a user connected');
   var addedUser = false;
 
@@ -58,7 +69,7 @@ io.on('connection', function(socket){
       //The user has decided to change their name.
       usernames[socket.uniqueIdentifer] = username;
 
-      io.emit('user renamed', {
+      io_chat.emit('user renamed', {
         oldUsername: socket.username,
         username: username
       });
@@ -67,7 +78,7 @@ io.on('connection', function(socket){
     }
 
     console.log(socket.username + ': ' + msg);
-  	io.emit('chat message', {
+  	io_chat.emit('chat message', {
         username: socket.username,
         uniqueIdentifer: socket.uniqueIdentifer,
         message: msg

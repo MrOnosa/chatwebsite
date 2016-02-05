@@ -8,7 +8,7 @@ $(function() {
   var username = 'Guest_'+uniqueIdentifer.toString(10).substr(2,4);
 	$('#usernameInput').val(username);
 
-	var socket = io();
+	var socket = io('/chat');
 	  $('form').submit(function(){
   		socket.emit('chat message', $('#usernameInput').val(), $('#chatInput').val());
   		$('#chatInput').val('');
